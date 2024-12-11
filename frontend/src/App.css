@@ -1,0 +1,13 @@
+.listTodo {
+    margin-bottom: 10px; 
+}
+
+.listTodo span {
+    margin-right: 10px; 
+}
+
+.mark, .delete, .edit {
+    margin-left: 5px; 
+    cursor: pointer; 
+}
+
