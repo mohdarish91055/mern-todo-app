@@ -76,9 +76,9 @@ const loginUser = async (req, res) => {
     //send toke in http only cookies
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false,
-      samSite: "none",
-      maxAge: 60 * 60 * 1000,
+      secure: true,
+      sameSite: "None",
+      maxAge: 60 * 60 * 1000, // 1 hour
     });
 
     console.log(`user login successfully`);

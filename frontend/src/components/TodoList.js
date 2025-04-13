@@ -20,7 +20,7 @@ const Login = () => {
   //get all todo
   const fetchTodo = async () => {
     try {
-      const response = await api.get("api/todos");
+      const response = await api.get(`api/todos`, { withCredentials: true });
       setTodo(response.data);
     } catch (err) {
       console.log(err);
