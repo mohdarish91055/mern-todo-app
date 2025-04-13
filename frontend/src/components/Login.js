@@ -14,6 +14,7 @@ const Login = () => {
     try {
       const response = await api.post("api/auth/login", { email, password });
       const { user } = response.data;
+      console.log(user);
       localStorage.setItem("user", JSON.stringify(user));
 
       toast.success(response.data.message, {

@@ -13,13 +13,11 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://mern-todo-app-1-jd0u.onrender.com",
-    ], // Frontend URL
+    origin: process.env.CLIENT_URL, // Frontend URL
     credentials: true, // Allow credentials (cookies)
   })
 );
+
 connectDB();
 
 app.get("/", (req, res) => {

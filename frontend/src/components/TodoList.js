@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user"));
-
+  console.log(user);
   useEffect(() => {
     fetchTodo();
   }, []);
