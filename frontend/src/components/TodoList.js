@@ -20,7 +20,7 @@ const Login = () => {
   //get all todo
   const fetchTodo = async () => {
     try {
-      const response = await api.get("/todos");
+      const response = await api.get("api/todos");
       setTodo(response.data);
     } catch (err) {
       console.log(err);
@@ -33,11 +33,11 @@ const Login = () => {
     e.preventDefault();
     try {
       if (editId) {
-        await api.put(`/todos/${editId}`, { title });
+        await api.put(`api/todos/${editId}`, { title });
         setTitle("");
         fetchTodo();
       } else {
-        await api.post("/todos", { title });
+        await api.post("api/todos", { title });
         setTitle("");
         fetchTodo();
       }
