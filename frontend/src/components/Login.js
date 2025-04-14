@@ -7,9 +7,11 @@ import { toast } from "react-toastify";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     try {
       const response = await api.post("api/auth/login", { email, password });
@@ -35,6 +37,8 @@ const Login = () => {
           autoClose: 1000,
         });
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,7 +72,17 @@ const Login = () => {
         />
         <br />
         <br />
-        <button type="submit">Login</button>
+        <button
+          type="submit"
+          disabled={loading}
+          style={{
+            color: loading ? "lightgray" : "gray",
+            cursor: loading ? "not-allowed" : "pointer",
+            opacity: loading ? 0.6 : 1,
+          }}
+        >
+          {loading ? "Processing..." : "Login"}
+        </button>
       </form>
     </div>
   );

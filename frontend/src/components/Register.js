@@ -9,9 +9,11 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   console.log(process.env.REACT_APP_API_URL);
 
   const handleRegister = async (e) => {
+    setLoading(true);
     e.preventDefault();
     try {
       const response = await api.post("api/auth/register", {
@@ -30,6 +32,8 @@ const Login = () => {
         position: "top-center",
         autoClose: 1000,
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -71,7 +75,17 @@ const Login = () => {
         />
         <br />
         <br />
-        <button type="submit">Register</button>
+        <button
+          type="submit"
+          disabled={loading}
+          style={{
+            color: loading ? "lightgray" : "gray",
+            cursor: loading ? "not-allowed" : "pointer",
+            opacity: loading ? 0.6 : 1,
+          }}
+        >
+          {loading ? "Processing..." : "Register"}
+        </button>
       </form>
     </div>
   );
